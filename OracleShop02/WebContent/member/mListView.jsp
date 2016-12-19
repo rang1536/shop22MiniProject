@@ -21,11 +21,12 @@
 			<tr>
 				<th>아이디</th><th>이  름</th><th>권  한</th><th>성  별</th>
 				<th>주  소</th><th>이메일</th><th>핸드폰</th><th>마일리지</th>
+				<th>가입일</th>
 			</tr>
 		</thead>
 		<tbody>
 
-		<c:forEach var="i" items="${list}">
+		<c:forEach var="i" items="${memberlist}">
 
 			<tr>
 				<td><a href ="<c:url value="/MemberView.mem?memberId=${i.memberId}"></c:url>">${i.memberId}</a></td>
@@ -36,6 +37,7 @@
 				<td>${i.memberEmail}</td>
 				<td>${i.memberMobile}</td>
 				<td>${i.memberMileage}</td>
+				<td>${i.memberDate}</td>
 			</tr>
 		
 		</c:forEach>

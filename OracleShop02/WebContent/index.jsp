@@ -12,8 +12,9 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-<a href ="<c:url value='/MInsert.mem' />">회원가입</a><br/>
-<a href ="<c:url value='/MList.mem' />">회원목록</a>
+<div class="container">
+	<a href ="<c:url value='/MLoginStart.mem' />">로그인하기</a>
+</div>
 <body>
 </body>
 </html>

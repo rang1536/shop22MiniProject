@@ -19,9 +19,9 @@ public class MList implements Action {
 		
 		mdao = new MemberDao();
 		m = new Member();
-		
+		list = new ArrayList<Member>();
 		list = mdao.mSelectAll();
-		request.setAttribute("list", list);
+		request.setAttribute("memberlist", list);
 		
 		MActionForward mforward = new MActionForward();
 		mforward.setRedirect(false);

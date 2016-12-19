@@ -20,7 +20,7 @@ public class MView implements Action {
 		}else{
 			String memberId = request.getParameter("memberId");
 			m = mdao.mSelectOneByKey(memberId);
-			request.setAttribute("m", m);
+			request.setAttribute("memberList", m);
 			mforward.setRedirect(false);
 			mforward.setPath("/member/mListView.jsp");
 		}

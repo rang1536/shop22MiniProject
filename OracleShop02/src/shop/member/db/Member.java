@@ -13,7 +13,29 @@ public class Member {
 	private String memberPhone;
 	private String memberMobile;
 	private String memberMileage;
+	private String memberDate;
+	private String startDay;
+	private String endDay;
 	
+	
+	public String getStartDay() {
+		return startDay;
+	}
+	public void setStartDay(String startDay) {
+		this.startDay = startDay;
+	}
+	public String getEndDay() {
+		return endDay;
+	}
+	public void setEndDay(String endDay) {
+		this.endDay = endDay;
+	}
+	public String getMemberDate() {
+		return memberDate;
+	}
+	public void setMemberDate(String memberDate) {
+		this.memberDate = memberDate;
+	}
 	public String getMemberId() {
 		return memberId;
 	}

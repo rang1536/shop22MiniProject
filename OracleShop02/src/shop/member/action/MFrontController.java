@@ -72,9 +72,54 @@ public class MFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
-		case ("/MemberView.mem"):
-			System.out.println("03회원검색");
-			action = new MView();
+		case ("/MUpdateForm.mem"):
+			System.out.println("04수정위한 상세보기");
+			action = new MUpdateForm();
+			try{
+				mforward = action.execute(request, response);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			break;
+		case ("/MLoginStart.mem"):
+			mforward = new MActionForward();
+			mforward.setRedirect(false);
+			mforward.setPath("/member//mLogin.jsp");
+			break;
+		case ("/MLogin.mem"):
+			System.out.println("05로그인");
+			action = new MLogin();
+			try{
+				mforward = action.execute(request, response);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			break;
+		case ("/MUpdateAction.mem"):
+			System.out.println("06회원정보수정");
+			action = new MUpdateAction();
+			try{
+				mforward = action.execute(request, response);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			break;
+		case ("/MDelete.mem"):
+			System.out.println("07삭제처리전 비번체크");
+			action = new MDelete();
+			try{
+				mforward = action.execute(request, response);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			break;
+		case ("/MDeleteAction.mem"):
+			System.out.println("08삭제처리");
+			action = new MDeleteAction();
 			try{
 				mforward = action.execute(request, response);
 				

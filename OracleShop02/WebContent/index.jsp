@@ -12,9 +12,9 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
-<div class="container">
+
 	<a href ="<c:url value='/MLoginStart.mem' />">로그인하기</a>
-</div>
+
 <body>
 </body>
 </html>

@@ -17,6 +17,7 @@ public class MInsert implements Action {
 		mdao = new MemberDao();
 		m = new Member();
 		
+		// mInsertForm.jsp에서 넘어온값들 세팅하고 mInsert매서드 호출하여 DB에 입력한다
 		m.setMemberId(request.getParameter("memberId"));
 		m.setMemberPw(request.getParameter("memberPw"));
 		m.setMemberName(request.getParameter("memberName"));
@@ -33,6 +34,7 @@ public class MInsert implements Action {
 		int result = mdao.mInsert(m);
 		System.out.println("입력 결과 : "+result);
 		
+		// 입력처리 확인후 리스트화면으로 리다이렉트 시킨다.
 		MActionForward mforward = new MActionForward();
 		mforward.setRedirect(true);
 		mforward.setPath("/MList.mem");

@@ -6,10 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
-
 import shop.driver.driverDb.DriverDb;
 import shop.member.db.Member;
 
@@ -24,7 +20,7 @@ public class MemberDao {
 	public MemberDao(){}
 	
 	//08 회원삭제처리
-	public int mDelete(String memberId) throws SQLException{
+	public int mDelete(String memberId) throws Exception{
 		System.out.println("회원삭제처리mDelete() ");
 		try{
 			db = new DriverDb();
@@ -45,7 +41,7 @@ public class MemberDao {
 	}
 	
 	//07 회원정보수정
-	public int mUpdate(Member m) throws SQLException{
+	public int mUpdate(Member m) throws Exception{
 		System.out.println("회원수정처리mUpdate() ");
 		try{
 			db = new DriverDb();
@@ -75,7 +71,7 @@ public class MemberDao {
 	}
 	
 	//06회원검색 관리자일때!
-	public ArrayList<Member> mSearchAdmin(Member m) throws SQLException{
+	public ArrayList<Member> mSearchAdmin(Member m) throws Exception{
 		System.out.println("06 관리자일때 회원검색");
 		
 		try{
@@ -118,7 +114,7 @@ public class MemberDao {
 		return memberList;
 	}
 	//05 로그인 체크
-	public Member mSelectLogin(String memberId,String memberPw) throws SQLException{
+	public Member mSelectLogin(String memberId,String memberPw) throws Exception{
 		System.out.println("05 로그인체크");
 		try{
 			db = new DriverDb();
@@ -149,7 +145,7 @@ public class MemberDao {
 	}
 	
 	//04 한명의 회원조회
-	public Member mSelectOneByKey(String memberId) throws SQLException{
+	public Member mSelectOneByKey(String memberId) throws Exception{
 		System.out.println("04 한명의 회원조회");
 		try{
 			db = new DriverDb();
@@ -186,7 +182,7 @@ public class MemberDao {
 	}
 	
 	//03 회원검색
-	public ArrayList<Member> mSearchNotAdmin(String memberName, String memberId) throws SQLException{
+	public ArrayList<Member> mSearchNotAdmin(String memberName, String memberId) throws Exception{
 		System.out.println("관리자 아닐때 회원검색");
 		System.out.println("MemberDao memberName값 : "+memberName);
 		System.out.println("MemberDao memberId값 : "+memberId);
@@ -227,7 +223,7 @@ public class MemberDao {
 	}
 
 	//02 전체회원조회 !!
-	public ArrayList<Member> mSelectAll() throws SQLException{
+	public ArrayList<Member> mSelectAll() throws Exception{
 		System.out.println("02 전체회원조회");
 		try{
 			db = new DriverDb();
@@ -265,7 +261,7 @@ public class MemberDao {
 	}
 			
 	//01 회원가입
-	public int mInsert(Member m) throws SQLException{
+	public int mInsert(Member m) throws Exception{
 		System.out.println("01_02입력처리메서드 선언 Mdao.java");
 		try{
 			db = new DriverDb();

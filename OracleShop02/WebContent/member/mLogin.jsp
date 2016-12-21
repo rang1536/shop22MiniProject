@@ -13,13 +13,14 @@
 </head>
 <body>
 <center><h1>로그인 체크</h1></center>
+<br/><br/>
 <div class="container">
-	<form action="<c:url value='MLogin.mem'/>" class="form-inline" method="post"  >
+	<form action="<c:url value='MLogin.mem'/>" class="form-inline" method="post"  align="center"  >
 		<div class="form-group">
 			<label> 아이디 : </label>
 			<input type="text" name="memberId" class="form-control"/>
 		</div>
-		<div class="form-group">
+		<div class="form-group" >
 			<label> 비  번 : </label>
 			<input type="password" name="memberPw" class="form-control" />
 		</div>

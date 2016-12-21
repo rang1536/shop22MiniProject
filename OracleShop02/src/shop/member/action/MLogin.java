@@ -26,7 +26,7 @@ public class MLogin implements Action {
 		// mLogin.jsp에서 입력한 아이디 패스워드 값이 있는지 확인하고 없으면 다시 로그인화면으로 리다이렉트 시킨다.
 		if(memberId ==null || memberPw ==null){
 			mforward.setRedirect(true);
-			mforward.setPath("/member/mLogin.jsp");
+			mforward.setPath("/index.jsp");
 			return mforward;
 		}
 		
@@ -51,7 +51,7 @@ public class MLogin implements Action {
 			session.setAttribute("sessionLevel",m.getMemberLevel());
 			session.setAttribute("sessionId",m.getMemberId());
 			mforward.setRedirect(true);
-			mforward.setPath("/MList.mem");
+			mforward.setPath("/index.jsp");
 			return mforward;
 			
 		// 조회 결과값이 없으면 비번 불일치 상황으로 경고창을 띄운후 입력화면으로 다시 돌아가게 한다.

@@ -24,6 +24,16 @@
     <url-pattern>*.ord</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>GFrontController</servlet-name>
+    <servlet-class>
+		shop.goods.action.GFrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GFrontController</servlet-name>
+    <url-pattern>*.goo</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

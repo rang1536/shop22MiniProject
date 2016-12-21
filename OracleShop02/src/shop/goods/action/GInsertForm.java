@@ -28,8 +28,6 @@ public class GInsertForm implements Action{
 		gforward.setRedirect(false);
 		gforward.setPath("/goods/gInsertForm.jsp");
 		
-		
-		
 		return gforward;
 	}
 }

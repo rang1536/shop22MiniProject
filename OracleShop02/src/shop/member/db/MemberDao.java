@@ -82,9 +82,9 @@ public class MemberDao {
 					+ " where member_name like ? and member_sex = ?"
 					+ " and member_date between ? and ? and member_add like ?");
 			pstmt.setString(1, "%"+m.getMemberName()+"%");
-			pstmt.setString(2, m.getMemberSex());
-			pstmt.setString(3, m.getStartDay());
-			pstmt.setString(4, m.getEndDay());
+			pstmt.setString(2, "%"+m.getMemberSex()+"%");
+			pstmt.setString(3, "%"+m.getStartDay()+"%");
+			pstmt.setString(4, "%"+m.getEndDay()+"%");
 			pstmt.setString(5, "%"+m.getMemberAdd()+"%");
 			rs = pstmt.executeQuery();
 			while(rs.next()){

@@ -205,9 +205,35 @@ public class GoodsDao {
 		return alm;
 	}	
 	
+	// 사이즈테이블전체조회
 	
-	//상품 사이즈 조회
-		public ArrayList<GoodsSize> selectSize(int goodsCateNum){
+			public ArrayList<GoodsSize> selectSize(){
+				
+				ArrayList<GoodsSize> size = new ArrayList<GoodsSize>();
+				try{
+					conn = DriverDb.driverDbcon();
+					String sql = "select goods_size_no,goods_cate_no, goods_size_name from goodssize";
+					pstmt = conn.prepareStatement(sql);
+					rs = pstmt.executeQuery();
+					System.out.println("상품색상조회 확인 : "+rs);
+					while(rs.next()){
+						GoodsSize s = new GoodsSize();
+						s.setGoodsSizeNum(rs.getInt("goods_size_no"));
+						s.setGoodsCateNum(rs.getInt("goods_cate_no"));
+						s.setGoodsSizeName(rs.getString("goods_size_name"));
+						size.add(s);
+					}
+				}catch(Exception e){
+					
+				}finally{
+					this.close(conn, pstmt, rs);
+				}
+				return size;
+			}
+	
+	
+	// 카테고리별 상품 사이즈 이름 조회
+		public ArrayList<GoodsSize> selectSizeName(int goodsCateNum){
 			
 			ArrayList<GoodsSize> size = new ArrayList<GoodsSize>();
 			try{

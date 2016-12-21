@@ -12,37 +12,68 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
+
 <center><h1>회원리스트</h1></center>
-<c:import url="/member/mSearchForm.jsp"></c:import>
-<div class="container">
-	<table class="table table-striped">
-	
-		<thead>
-			<tr>
-				<th>아이디</th><th>이  름</th><th>권  한</th><th>성  별</th>
-				<th>주  소</th><th>이메일</th><th>핸드폰</th><th>마일리지</th>
-			</tr>
-		</thead>
-		<tbody>
 
-		<c:forEach var="i" items="${memberlist}">
+<c:choose>
+	<c:when test="${sessionScope.sessionLevel eq '관리자'}">
+		<c:import url="/member/mSearchForm.jsp"></c:import>
+			<div class="container">
+				<div class="btn-group">
+					<a href ="<c:url value='/MLogout.mem' />" class="btn btn-primary" >로그아웃</a><br/>
+				</div>
+				<table class="table table-striped">
+				
+					<thead>
+						<tr>
+							<th>아이디</th><th>이  름</th><th>권  한</th><th>성  별</th>
+							<th>주  소</th><th>이메일</th><th>핸드폰</th><th>마일리지</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="i" items="${memberlist}">
+							<tr>
+								<td><a href ="<c:url value="/MUpdateForm.mem?memberId=${i.memberId}"></c:url>">${i.memberId}</a></td>
+								<td>${i.memberName}</td>
+								<td>${i.memberLevel}</td>
+								<td>${i.memberSex}</td>
+								<td>${i.memberAdd}</td>
+								<td>${i.memberEmail}</td>
+								<td>${i.memberMobile}</td>
+								<td>${i.memberMileage}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+	</c:when>
+	<c:when test="${sessionScope.sessionLevel != '관리자'}">
+		<c:import url="/member/mSearchForm.jsp"></c:import>
+			<div class="container">
+				<div class="btn-group">
+					<a href ="<c:url value='/MLogout.mem' />" class="btn btn-primary" >로그아웃</a><br/> 
+				</div>
+				<table class="table table-striped">
+				
+					<thead>
+						<tr>
+							<th>아이디</th><th>이  름</th><th>성  별</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="i" items="${memberlist}">
+							<tr>
+								<td><a href ="<c:url value="/MUpdateForm.mem?memberId=${i.memberId}"></c:url>">${i.memberId}</a></td>
+								<td>${i.memberName}</td>
+								<td>${i.memberSex}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+	</c:when>
+</c:choose>
 
-			<tr>
-				<td><a href ="<c:url value="/MUpdateForm.mem?memberId=${i.memberId}"></c:url>">${i.memberId}</a></td>
-				<td>${i.memberName}</td>
-				<td>${i.memberLevel}</td>
-				<td>${i.memberSex}</td>
-				<td>${i.memberAdd}</td>
-				<td>${i.memberEmail}</td>
-				<td>${i.memberMobile}</td>
-				<td>${i.memberMileage}</td>
-			</tr>
-		
-		</c:forEach>
-
-		</tbody>
-	</table>
-</div>
 <body>
 </body>
 </html>

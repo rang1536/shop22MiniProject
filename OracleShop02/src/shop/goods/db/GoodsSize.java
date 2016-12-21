@@ -5,6 +5,7 @@ public class GoodsSize {
 	private int goodsSizeNum;
 	private int goodsCateNum;
 	private String goodsSizeName;
+	
 	public GoodsSize() {
 		super();
 	}

@@ -50,7 +50,7 @@ public class OInsert implements Action {
 		ArrayList<GoodsColor> goodsColor = new ArrayList<GoodsColor>();
 		ArrayList<GoodsSize> goodsSize = new ArrayList<GoodsSize>();
 		goodsColor = gDao.selectColor();
-		goodsSize = gDao.selectSize(goods.getGoodsCate());
+		goodsSize = gDao.selectSizeName(goods.getGoodsCate());
 		
 		request.setAttribute("goodsColor", goodsColor);
 		request.setAttribute("goodsSize", goodsSize);

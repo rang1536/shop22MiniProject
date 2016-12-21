@@ -14,9 +14,8 @@
 <title>GLIST</title>
 </head>
 <body>
-	세션값 확인 : ${sessionId}
 	<c:choose>
-		<c:when test="${sessionId =='관리자'}">
+		<c:when test="${sessionScope.sessionLevel eq '관리자'}">
 			<div class="container">
 				<div>
 					<c:import url="gSearchForm.jsp"></c:import>
@@ -38,14 +37,12 @@
 								<c:forEach var="goodsList" items="${goodsList}">
 									<tr>
 									
-										<td><a
-											href="<c:url value="/goods/gDetailForm.goo?goodsNum=${goodsList.goodsNum}"/>">
-											<img src="../imgFile/${goodsList.goodsImg}">
-											</a></td>
+										<td><a href="<c:url value='/goods/gDetailForm.goo?goodsNum=${goodsList.goodsNum}'/>">
+											<img src="<c:url value='/imgFile/'/>${goodsList.goodsImg}"></a>
+										</td>
 										<td>${goodsList.goodsName}</td>
 										<td>${goodsList.goodsPrice}</td>
-										<td><a
-											href="<c:url value="/goods/gDelete.goo?goodsNum=${goodsList.goodsNum}"/>">딜리트</a></td>
+										<td><a href="<c:url value="/goods/gDelete.goo?goodsNum=${goodsList.goodsNum}"/>">딜리트</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -56,16 +53,12 @@
 			</div>
 		</c:when>
 
-		<c:when test="${sessionId=='판매자'}">
+		<c:when test="${sessionScope.sessionLevel eq '판매자'}">
 			<div class="container">
 				<div>
 					<c:import url="gSearchForm.jsp"></c:import>
 				</div>
 				<div>
-
-
-
-
 					<h1>상품리스트</h1>
 					<br />
 					<form>
@@ -83,14 +76,13 @@
 							<tbody>
 								<c:forEach var="goodsList" items="${goodsList}">
 									<tr>
-										<td><a
-											href="<c:url value="/goods/gDetailForm.goo?goodsNum=${goodsList.goodsNum}"/>">${goodsList.goodsImg}</a></td>
+										<td><a href="<c:url value='/goods/gDetailForm.goo?goodsNum=${goodsList.goodsNum}'/>">
+											<img src="<c:url value='/imgFile/'/>${goodsList.goodsImg}"></a>
+										</td>
 										<td>${goodsList.goodsName}</td>
 										<td>${goodsList.goodsPrice}</td>
-										<td><a
-											href="<c:url value="/goods/GUpdateForm.goo?goodsNum=${goodsList.goodsNum}"/>">업데이트</a></td>
-										<td><a
-											href="<c:url value="/goods/gDelete.goo?goodsNum=${goodsList.goodsNum}"/>">딜리트</a></td>
+										<td><a href="<c:url value="/goods/GUpdateForm.goo?goodsNum=${goodsList.goodsNum}"/>">업데이트</a></td>
+										<td><a href="<c:url value="/goods/gDelete.goo?goodsNum=${goodsList.goodsNum}"/>">딜리트</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -106,8 +98,6 @@
 					<c:import url="gSearchForm.jsp"></c:import>
 				</div>
 				<div>
-
-
 					<h1>상품리스트</h1>
 					<br />
 					<form>
@@ -122,8 +112,9 @@
 							<tbody>
 								<c:forEach var="goodsList" items="${goodsList}">
 									<tr>
-										<td><a
-											href="<c:url value="/goods/gDetailForm.goo?goodsNum=${goodsList.goodsNum}"/>">${goodsList.goodsImg}</a></td>
+										<td><a href="<c:url value='/goods/gDetailForm.goo?goodsNum=${goodsList.goodsNum}'/>">
+											<img src="<c:url value='/imgFile/'/>${goodsList.goodsImg}"></a>
+										</td>
 										<td>${goodsList.goodsName}</td>
 										<td>${goodsList.goodsPrice}</td>
 									</tr>

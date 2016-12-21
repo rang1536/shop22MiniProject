@@ -13,10 +13,10 @@ public class GUpdateAction implements Action{
 		int goodsNum = Integer.parseInt(request.getParameter("goodsNum"));
 		String goodsMemberId = request.getParameter("goodsMemberId");
 		String goodsName = request.getParameter("goodsName");
-		String goodsCate = request.getParameter("goodsCate");
+		int goodsCate = Integer.parseInt(request.getParameter("goodsCate"));
 		int goodsPrice = Integer.parseInt(request.getParameter("goodsPrice"));
 		String goodsColor = request.getParameter("goodsColor");
-		String goodsSize = request.getParameter("goodsSize");
+		int goodsSize = Integer.parseInt(request.getParameter("goodsSize"));
 		int goodsAmount = Integer.parseInt(request.getParameter("goodsAmount"));
 		String goodsImg = request.getParameter("goodsImg");
 		String goodsDetail = request.getParameter("goodsDetail");

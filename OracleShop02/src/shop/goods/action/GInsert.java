@@ -17,9 +17,12 @@ public class GInsert implements Action {
 		System.out.println("상품 입력 execute 실행");
 		System.out.println("값확인"+request.getParameter("goodsName"));
 		System.out.println("값확인"+request.getParameter("goodsCate"));
-		 Part part = request.getPart("goodsImg");
-		 String dir = request.getContextPath()+"/imgFile";
-		 String filename = UUID.randomUUID().toString().replace("-", "");
+		
+		Part part = request.getPart("goodsImg");
+		String dir = "D:/CHAE/shop22/shop22/WebContent/imgFile/";
+		String filename = part.getSubmittedFileName();
+		System.out.println("filename확인 :"+filename);
+		part.write(dir+filename);
 	   
 		
 		Goods g = new Goods();
@@ -29,16 +32,14 @@ public class GInsert implements Action {
 		g.setGoodsPrice(Integer.parseInt(request.getParameter("goodsPrice")));
 		g.setGoodsColor(request.getParameter("goodsColor"));
 		g.setGoodsSize(Integer.parseInt(request.getParameter("goodsSize")));
-		g.setGoodsImg(request.getParameter("goodsImg"));
+		g.setGoodsImg(filename);
 		g.setGoodsDetail(request.getParameter("goodsDetail"));
 		g.setGoodsAmount(Integer.parseInt(request.getParameter("goodsAmount")));
+		
 		System.out.println("goods insert값 잘 넘겨받아서 세팅됫는지 확인");
 		System.out.println(g.getGoodsDetail());
-		
-		
-		
+	
 		GoodsDao dao = new GoodsDao();
-		
 		int rowCount = dao.gInsert(g);
 		System.out.println("입력후 rowCount 확인 : "+ rowCount);
 		
@@ -48,5 +49,4 @@ public class GInsert implements Action {
 	
 		return gforward;
 	}
-	
 }

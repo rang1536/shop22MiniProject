@@ -82,11 +82,7 @@ public class MFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
-		case ("/MLoginStart.mem"):
-			mforward = new MActionForward();
-			mforward.setRedirect(false);
-			mforward.setPath("/member//mLogin.jsp");
-			break;
+		
 		case ("/MLogin.mem"):
 			System.out.println("05로그인");
 			action = new MLogin();
@@ -120,6 +116,16 @@ public class MFrontController extends HttpServlet {
 		case ("/MDeleteAction.mem"):
 			System.out.println("08삭제처리");
 			action = new MDeleteAction();
+			try{
+				mforward = action.execute(request, response);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			break;
+		case ("/MLogout.mem"):
+			System.out.println("09로그아웃처리");
+			action = new MLogout();
 			try{
 				mforward = action.execute(request, response);
 				

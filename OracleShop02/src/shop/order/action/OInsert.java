@@ -45,12 +45,14 @@ public class OInsert implements Action {
 		Goods goods = new Goods();
 		goods = gDao.gSelectOne(goodsNum);
 		request.setAttribute("goods", goods);
-			
+		System.out.println("사이즈 조회전 카테고리 넘버값 확인 : "+goods.getGoodsCate());
+		
 			//3.상품컬러,사이즈 조회
 		ArrayList<GoodsColor> goodsColor = new ArrayList<GoodsColor>();
 		ArrayList<GoodsSize> goodsSize = new ArrayList<GoodsSize>();
 		goodsColor = gDao.selectColor();
 		goodsSize = gDao.selectSizeName(goods.getGoodsCate());
+		System.out.println("사이즈 조회후 배열 길이 확인 : "+goodsSize.size());
 		
 		request.setAttribute("goodsColor", goodsColor);
 		request.setAttribute("goodsSize", goodsSize);

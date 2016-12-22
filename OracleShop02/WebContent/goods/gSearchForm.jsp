@@ -25,7 +25,7 @@
 <body>
 	<div class="container">
 		<h2>상품검색</h2>
-		<p>상품검색</p>
+		
 		
 		<form class="form-inline" action="<c:url value="/goods/gSearchForm.goo"/>" method="post">
 			<div class="form-group">

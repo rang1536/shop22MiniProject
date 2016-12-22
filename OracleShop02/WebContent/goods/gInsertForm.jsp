@@ -19,7 +19,7 @@
 			enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="goodsMemberId">등록자명:</label> 
-				<input type="text" class="form-control" id="goodsMemberId" name="goodsMemberId" value="${sessionScope.sessionId}" readony/>
+				<input type="text" class="form-control" id="goodsMemberId" name="goodsMemberId" value="${sessionScope.sessionId}" readonly/>
 					
 			</div>
 			<div class="form-group">

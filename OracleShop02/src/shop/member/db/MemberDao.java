@@ -81,14 +81,14 @@ public class MemberDao {
 			
 			//회원가입일을 입력하지 않았으면 가입일 조건없이 조회하는 쿼리실행하고 가입일 범위 있으면 조건에 넣어 검색한다.
 			if(m.getStartDay().equals("") || m.getEndDay().equals("")){
-				if(m.getMemberLevel() != null){
+				if(m.getMemberSex() != null){
 					pstmt = conn.prepareStatement("select * from member"
 							+ " where member_name like ? and member_sex like ?"
 							+ " and member_add like ?");
 					pstmt.setString(1, "%"+m.getMemberName()+"%");
 					pstmt.setString(2, "%"+m.getMemberSex()+"%");
 					pstmt.setString(3, "%"+m.getMemberAdd()+"%");
-				}else if(m.getMemberLevel() == null){
+				}else if(m.getMemberSex() == null){
 					pstmt = conn.prepareStatement("select * from member"
 							+ " where member_name like ?"
 							+ " and member_add like ?");
@@ -96,7 +96,7 @@ public class MemberDao {
 					pstmt.setString(2, "%"+m.getMemberAdd()+"%");
 				}
 			}else if(m.getStartDay() != ""){
-				if(m.getMemberLevel() != null){
+				if(m.getMemberSex() != null){
 					pstmt = conn.prepareStatement("select * from member"
 							+ " where member_name like ? and member_sex like ?"
 							+ " and member_date between ? and ? and member_add like ?");
@@ -105,7 +105,7 @@ public class MemberDao {
 					pstmt.setString(3, m.getStartDay());
 					pstmt.setString(4, m.getEndDay());
 					pstmt.setString(5, "%"+m.getMemberAdd()+"%");
-				}else if(m.getMemberLevel() == null){
+				}else if(m.getMemberSex() == null){
 					pstmt = conn.prepareStatement("select * from member"
 							+ " where member_name like ?"
 							+ " and member_date between ? and ?"

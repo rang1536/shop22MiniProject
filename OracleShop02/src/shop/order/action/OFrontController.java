@@ -40,6 +40,16 @@ public class OFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
+		case("/OInsertAction.ord"):
+			System.out.println("01주문 입력!");
+			action = new OInsertAction();
+			try{
+				oforward = action.execute(request, response);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			break;
 		default:
 			break;
 		}

@@ -19,8 +19,15 @@ public class Order {
 	private String 		orderTradeDate;
 	private String 		orderPayDate;
 	private int 		orderMileage;
-	private String 		orderPayFinal;
+	private int 		orderPayFinal;
+	private int 		orderPrice;
 	
+	public int getOrderPrice() {
+		return orderPrice;
+	}
+	public void setOrderPrice(int orderPrice) {
+		this.orderPrice = orderPrice;
+	}
 	public int getOrderNum() {
 		return orderNum;
 	}
@@ -129,10 +136,10 @@ public class Order {
 	public void setOrderMileage(int orderMileage) {
 		this.orderMileage = orderMileage;
 	}
-	public String getOrderPayFinal() {
+	public int getOrderPayFinal() {
 		return orderPayFinal;
 	}
-	public void setOrderPayFinal(String orderPayFinal) {
+	public void setOrderPayFinal(int orderPayFinal) {
 		this.orderPayFinal = orderPayFinal;
 	}
 	

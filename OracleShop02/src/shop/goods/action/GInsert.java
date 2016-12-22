@@ -19,7 +19,7 @@ public class GInsert implements Action {
 		System.out.println("값확인"+request.getParameter("goodsCate"));
 		
 		Part part = request.getPart("goodsImg");
-		String dir = "D:/CHAE/shop22/shop22/WebContent/imgFile/";
+		String dir = "D:/eclipse/Miniproject/shop22MiniProject/OracleShop02/WebContent/imgFile/";
 		String filename = part.getSubmittedFileName();
 		System.out.println("filename확인 :"+filename);
 		part.write(dir+filename);

@@ -10,12 +10,17 @@ public class OrderDao {
 	Connection conn;
 	PreparedStatement pstmt;
 	ResultSet rs;
-	Order o;
+	Order order;
+	
+	//02 주문내용 입력하는 매서드
+	public int oInsert(Order order) throws Exception{
+		return 0;
+	}
 	
 	//01 구매자 아이디로 주문내역조회
 	public Member oSelectMemberGoods(String memberId) throws Exception{
 		System.out.println("01 주문위한 구매자,상품정보조회 OrderDao!");
-		o = new Order();
+		order = new Order();
 		try{
 			db = new DriverDb();
 			conn=db.driverDbcon();

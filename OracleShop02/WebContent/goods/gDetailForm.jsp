@@ -66,7 +66,7 @@
 					</tr>
 				</tbody>
 			</table>
-			
+			<a href="<c:url value='/OInsert.ord?goodsNum=${goods.goodsNum}'/>">주문하기</a>
 		</form>
 	</div>
 

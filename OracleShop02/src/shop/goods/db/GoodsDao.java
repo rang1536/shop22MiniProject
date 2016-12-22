@@ -146,7 +146,10 @@ public class GoodsDao {
 		int rowCount = 0;
 		try{
 		conn=DriverDb.driverDbcon();
-		pstmt = conn.prepareStatement("insert into GOODS(goods_member_id,goods_name,goods_cate,goods_price,goods_color,goods_size,goods_img,goods_detail,goods_amount,goods_date) values(?,?,?,?,?,?,?,?,?,now())");
+		pstmt = conn.prepareStatement("insert into GOODS(goods_member_id,"
+				+ "goods_name,goods_cate,goods_price,goods_color,goods_size,"
+				+ "goods_img,goods_detail,goods_amount,goods_date)"
+				+ " values(?,?,?,?,?,?,?,?,?,now())");
 		pstmt.setString(1, g.getGoodsMemberId());
 		pstmt.setString(2, g.getGoodsName());
 		pstmt.setInt(3, g.getGoodsCate());
@@ -238,8 +241,10 @@ public class GoodsDao {
 			ArrayList<GoodsSize> size = new ArrayList<GoodsSize>();
 			try{
 				conn = DriverDb.driverDbcon();
-				String sql = "select goods_size_no,goods_cate_no, goods_size_name from goodssize";
+				String sql = "select goods_size_no,goods_cate_no, goods_size_name"
+						+ " from goodssize where goods_cate_no = ?";
 				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, goodsCateNum);
 				rs = pstmt.executeQuery();
 				System.out.println("상품색상조회 확인 : "+rs);
 				while(rs.next()){

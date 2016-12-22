@@ -42,6 +42,8 @@ public class MSearch implements Action {
 					
 		//   2. 관리자일때 조건!
 		}else if(sessionLevel.equals("관리자")){
+			System.out.println("확인 "+request.getParameter("memberSex"));
+			System.out.println("확인 "+request.getParameter("startDay"));
 			String memberName = request.getParameter("memberName");
 			String memberSex = request.getParameter("memberSex");
 			String startDay = request.getParameter("startDay");
@@ -55,7 +57,7 @@ public class MSearch implements Action {
 			m.setEndDay(endDay);
 			m.setMemberAdd(memberAdd);
 			memberList = mdao.mSearchAdmin(m);
-			
+			System.out.println(memberList.get(0).getMemberId());
 			//입력값으로 조건비교하여 일치하는 값만 리턴받아 request영역에 세팅. view페이지로 포워드 한다
 			request.setAttribute("memberlist", memberList);
 		}

@@ -26,13 +26,10 @@
 				<label for="goodsName">상품명:</label> 
 				<input type="text" class="form-control" id="goodsName" name="goodsName" placeholder="상품명">
 			</div>
+			
 			<div class="form-group">
 				<label for="goodsCate">상품분류:</label>
-				<select name="goodsCate">
-					<c:forEach var="cate" items="${cate}">
-						<option value="${cate.goodsCateNum}" >${cate.goodsCateName}</option>
-					</c:forEach>
-				</select>
+				<input type="text" class="form-control" name="goodsCate" value="${goodsCate}" readonly/>
 			</div>
 			<div class="form-group">
 				<label for="goodsPrice">상품가격:</label> 

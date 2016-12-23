@@ -19,6 +19,7 @@ public class MemberDao {
 	int rowCount;
 	public MemberDao(){}
 	
+		
 	//08 雀盔昏力贸府
 	public int mDelete(String memberId) throws Exception{
 		System.out.println("雀盔昏力贸府mDelete() ");

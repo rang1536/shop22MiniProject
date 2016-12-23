@@ -14,16 +14,15 @@ public class GInsertForm implements Action{
 
 	@Override
 	public GActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int goodsCateNum = Integer.parseInt(request.getParameter("goodsCate"));
 		GoodsDao dao = new GoodsDao();
-		ArrayList<GoodsCate> cate = dao.selectCate();
+		
 		ArrayList<GoodsColor> color = dao.selectColor();
-		ArrayList<GoodsSize> size = dao.selectSize();
-	
-		request.setAttribute("cate", cate);
+		ArrayList<GoodsSize> size = dao.selectSizeName(goodsCateNum);
+		
 		request.setAttribute("color", color);
 		request.setAttribute("size", size);
-		
-
+		request.setAttribute("goodsCate", goodsCateNum);
 		GActionForward gforward = new GActionForward();
 		gforward.setRedirect(false);
 		gforward.setPath("/goods/gInsertForm.jsp");

@@ -19,12 +19,13 @@ public class GUpdateForm implements Action{
 
 		GoodsDao dao = new GoodsDao();
 		Goods g = dao.gSelectOne(goodsNum);
-		ArrayList<GoodsCate> cate = dao.selectCate();
+		
+		
 		ArrayList<GoodsColor> color = dao.selectColor();
-		ArrayList<GoodsSize> size = dao.selectSize();
+		ArrayList<GoodsSize> size = dao.selectSizeName(g.getGoodsCate());
 		System.out.println("update폼으로 넘어오는 Goods g :" + g);
 		request.setAttribute("goods", g);
-		request.setAttribute("cate", cate);
+	
 		request.setAttribute("color", color);
 		request.setAttribute("size", size);
 		

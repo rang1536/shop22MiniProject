@@ -7,7 +7,7 @@ public class Goods {
 	private String goodsName;
 	private int goodsCate;
 	private int goodsPrice;
-	private String goodsColor;
+	private int goodsColor;
 	private int goodsSize;
 	private String goodsDate;
 	private String goodsImg;
@@ -43,10 +43,10 @@ public class Goods {
 	public void setGoodsPrice(int goodsPrice) {
 		this.goodsPrice = goodsPrice;
 	}
-	public String getGoodsColor() {
+	public int getGoodsColor() {
 		return goodsColor;
 	}
-	public void setGoodsColor(String goodsColor) {
+	public void setGoodsColor(int goodsColor) {
 		this.goodsColor = goodsColor;
 	}
 	public int getGoodsSize() {

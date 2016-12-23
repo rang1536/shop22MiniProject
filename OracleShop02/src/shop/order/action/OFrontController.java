@@ -31,7 +31,7 @@ public class OFrontController extends HttpServlet {
 		
 		switch(command){
 		case("/OInsert.ord"):
-			System.out.println("01주문 입력!");
+			System.out.println("01주문 입력폼 처리!!");
 			action = new OInsert();
 			try{
 				oforward = action.execute(request, response);
@@ -41,8 +41,18 @@ public class OFrontController extends HttpServlet {
 			}
 			break;
 		case("/OInsertAction.ord"):
-			System.out.println("01주문 입력!");
+			System.out.println("02주문 등록 처리!!");
 			action = new OInsertAction();
+			try{
+				oforward = action.execute(request, response);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			break;
+		case("/OUpdateForm.ord"):
+			System.out.println("03주문 확인/수정!!");
+			action = new OUpdateForm();
 			try{
 				oforward = action.execute(request, response);
 				

@@ -25,7 +25,7 @@ public class GoodsDao {
 	}
 	
 	
-	public ArrayList<Goods> gSearch(String goodsCate, String goodsName){
+	public ArrayList<Goods> gSearch(int goodsCate, String goodsName){
 		ArrayList<Goods> goods = new ArrayList<Goods>();
 		try{
 		String sql = "select goods_name,goods_cate,goods_price,goods_color,goods_size,goods_img from goods where goods_cate like ? AND goods_name like ?";
@@ -39,7 +39,7 @@ public class GoodsDao {
 			g.setGoodsName(rs.getString("GOODS_NAME"));
 			g.setGoodsCate(rs.getInt("GOODS_CATE"));
 			g.setGoodsPrice(rs.getInt("GOODS_PRICE"));
-			g.setGoodsColor(rs.getString("GOODS_COLOR"));
+			g.setGoodsColor(rs.getInt("GOODS_COLOR"));
 			g.setGoodsSize(rs.getInt("GOODS_SIZE"));
 			g.setGoodsImg(rs.getString("GOODS_IMG"));
 			goods.add(g);
@@ -88,7 +88,7 @@ public class GoodsDao {
 			pstmt.setString(2, g.getGoodsName());
 			pstmt.setInt(3, g.getGoodsCate());
 			pstmt.setInt(4, g.getGoodsPrice());
-			pstmt.setString(5, g.getGoodsColor());
+			pstmt.setInt(5, g.getGoodsColor());
 			pstmt.setInt(6, g.getGoodsSize());
 			pstmt.setString(7, g.getGoodsImg());
 			pstmt.setString(8, g.getGoodsDetail());
@@ -123,7 +123,7 @@ public class GoodsDao {
 				g.setGoodsName(rs.getString("GOODS_NAME"));
 				g.setGoodsCate(rs.getInt("GOODS_CATE"));
 				g.setGoodsPrice(rs.getInt("GOODS_PRICE"));
-				g.setGoodsColor(rs.getString("GOODS_COLOR"));
+				g.setGoodsColor(rs.getInt("GOODS_COLOR"));
 				g.setGoodsSize(rs.getInt("GOODS_SIZE"));
 				g.setGoodsDate(rs.getString("goods_date"));
 				g.setGoodsImg(rs.getString("GOODS_IMG"));
@@ -154,7 +154,7 @@ public class GoodsDao {
 		pstmt.setString(2, g.getGoodsName());
 		pstmt.setInt(3, g.getGoodsCate());
 		pstmt.setInt(4, g.getGoodsPrice());
-		pstmt.setString(5, g.getGoodsColor());
+		pstmt.setInt(5, g.getGoodsColor());
 		pstmt.setInt(6, g.getGoodsSize());
 		pstmt.setString(7, g.getGoodsImg());
 		pstmt.setString(8, g.getGoodsDetail());
@@ -191,7 +191,7 @@ public class GoodsDao {
 			g.setGoodsName(rs.getString("GOODS_NAME"));
 			g.setGoodsCate(rs.getInt("GOODS_CATE"));
 			g.setGoodsPrice(rs.getInt("GOODS_PRICE"));
-			g.setGoodsColor(rs.getString("GOODS_COLOR"));
+			g.setGoodsColor(rs.getInt("GOODS_COLOR"));
 			g.setGoodsSize(rs.getInt("GOODS_SIZE"));
 			g.setGoodsDate(rs.getString("GOODS_DATE"));
 			g.setGoodsImg(rs.getString("GOODS_IMG"));
@@ -234,7 +234,60 @@ public class GoodsDao {
 				return size;
 			}
 	
+		//상세보기 할때 입력시 선택한 size 조회
+		public String useDetailselectSize(int goodsNum){
+			int goodsSizeNum = 0;
+			String goodsSizeName = null;
+			try{
+				
+				conn = DriverDb.driverDbcon();
+				String sql = "select goods_size from goods where goods_num = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, goodsNum);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					goodsSizeNum = rs.getInt("goods_size");
+					System.out.println("goodsSizeNum 확인 : "+ goodsSizeNum);
+					sql = "select goods_size_name from goodssize where goods_size_no = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, goodsSizeNum);
+					rs = pstmt.executeQuery();
+					if(rs.next()){
+						goodsSizeName= rs.getString("goods_size_name");
+						System.out.println("goodsSizeName 확인 : "+ goodsSizeName);
+					}
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				this.close(conn, pstmt, rs);
+			}
+			
+			return goodsSizeName;
+		}
 	
+	// 카테고리 넘버 입력시 카테고리 조회
+		public GoodsCate selectCategory(int goodsCateNum){
+				GoodsCate cate = new GoodsCate();
+			try{
+				conn = DriverDb.driverDbcon();
+				String sql = "select goods_cate_no,goods_cate_name from goodscate where coods_cate_no = ?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, goodsCateNum);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					cate.setGoodsCateNum(rs.getInt("goods_cate_no"));
+					cate.setGoodsCateName(rs.getString("goods_cate_name"));
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				this.close(conn, pstmt, rs);
+			}
+			return cate;
+		}
+		
+			
 	// 카테고리별 상품 사이즈 이름 조회
 		public ArrayList<GoodsSize> selectSizeName(int goodsCateNum){
 			
@@ -261,10 +314,7 @@ public class GoodsDao {
 			}
 			return size;
 		}
-	
-	
-	
-	
+
 	
 	//상품 색상 조회
 	public ArrayList<GoodsColor> selectColor(){
@@ -289,15 +339,7 @@ public class GoodsDao {
 		}
 		return color;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 		//상품 카테고리 조회
 	public ArrayList<GoodsCate> selectCate(){
 		
@@ -322,12 +364,6 @@ public class GoodsDao {
 		return cate;
 	}
 	
-	
-	
-	
-	
-	
-	
 	protected void close(Connection conn , Statement pstmt, ResultSet rs){
 			
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
@@ -335,7 +371,5 @@ public class GoodsDao {
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 			
 		}
-	
-	
-		
+
 	}

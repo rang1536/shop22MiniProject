@@ -39,10 +39,7 @@ public class GFrontController extends HttpServlet {
 			}
 			
 		}
-		
-		
-		
-		
+	
 		//검색화면
 		if(command.equals("/goods/gSearch.goo")){
 			System.out.println("검색버튼 클릭시 검색화면으로 이동");
@@ -50,14 +47,7 @@ public class GFrontController extends HttpServlet {
 			gforward.setRedirect(true);
 			gforward.setPath(request.getContextPath()+"/goods/gSearchForm.jsp");
 		}
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 		//상세보기
 		if(command.equals("/goods/gDetailForm.goo")){
@@ -70,10 +60,7 @@ public class GFrontController extends HttpServlet {
 			}
 		}
 		
-		
-		
-		
-		
+	
 		//상품 삭제
 		if(command.equals("/goods/gDelete.goo")){
 			System.out.println("상품삭제 버튼 클릭");
@@ -84,8 +71,6 @@ public class GFrontController extends HttpServlet {
 				
 			}
 		}
-		
-		
 		
 		
 		//상품수정입력 후 실행
@@ -99,9 +84,7 @@ public class GFrontController extends HttpServlet {
 			}
 			
 		}
-		
-		
-		
+	
 		//상품수정
 		if(command.equals("/goods/GUpdateForm.goo")){
 			System.out.println("상품수정 클릭");
@@ -117,13 +100,11 @@ public class GFrontController extends HttpServlet {
 		}
 		
 		
-		
-			
 			//상품 입력완료 후 쿼리실행
 		
 		if(command.equals("/goods/gInsertAction.goo")){
 			System.out.println("상품입력화면에서 값 입력했음 입력요청");
-			action = new GInsert();
+			action = new GInsertAction();
 			try{
 				
 				gforward = action.execute(request, response);
@@ -131,12 +112,9 @@ public class GFrontController extends HttpServlet {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
-			
+	
 		}
-		
-		
-		
+	
 		//상품입력하고싶을때 상품입력화면으로 감
 		if(command.equals("/goods/gInsert.goo")){
 			System.out.println("상품입력화면으로 감");
@@ -146,10 +124,8 @@ public class GFrontController extends HttpServlet {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-				
-			
-		}
 		
+		}
 		
 		
 		//리스트
@@ -162,9 +138,7 @@ public class GFrontController extends HttpServlet {
 				e.printStackTrace();
 				
 			}
-			
-			
-			
+		
 		}
 		
 		if(gforward != null){
@@ -178,15 +152,9 @@ public class GFrontController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 		}
-		
-		
-		
-		
+
 	}
-	
-	
-	
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("get방식으로 컨트롤러접속");
 		doPro(request , response);

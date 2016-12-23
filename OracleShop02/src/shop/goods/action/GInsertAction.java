@@ -1,7 +1,5 @@
 package shop.goods.action;
 
-import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -9,11 +7,12 @@ import javax.servlet.http.Part;
 import shop.goods.db.Goods;
 import shop.goods.db.GoodsDao;
 
-public class GInsert implements Action {
+public class GInsertAction implements Action {
 	
 	@Override
 	
 	public GActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		System.out.println("상품 입력 execute 실행");
 		System.out.println("값확인"+request.getParameter("goodsName"));
 		System.out.println("값확인"+request.getParameter("goodsCate"));

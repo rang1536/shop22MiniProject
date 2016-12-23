@@ -14,12 +14,31 @@
 <title>GLIST</title>
 </head>
 <body>
+<div class="container"> 
+<h2>상품검색</h2>
+		<p>상품검색</p>
+		
+		<form class="form-inline" action="<c:url value="/goods/gSearchForm.goo"/>" method="post">
+			<div class="form-group">
+			
+				<label for="goodsCate">카테고리</label> 
+				<select name="goodsCate">
+					<c:forEach var="goodsCate" items="${goodsCate}">
+						<option value="${goodsCate.goodsCateNum}">${goodsCate.goodsCateName}</option>
+					</c:forEach>
+						
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="goodsName">상품명</label> <input type="text"
+					class="form-control" id="goodsName" name="goodsName" placeholder="상품명을 입력하세요">
+			</div>
+	
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
 	<c:choose>
 		<c:when test="${sessionScope.sessionLevel eq '관리자'}">
-			<div class="container">
-				<div>
-					<c:import url="gSearchForm.jsp"></c:import>
-				</div>
+			
 				<div>
 					<h1>상품리스트</h1>
 					<br />
@@ -50,14 +69,12 @@
 
 					</form>
 				</div>
-			</div>
+			
 		</c:when>
 
 		<c:when test="${sessionScope.sessionLevel eq '판매자'}">
-			<div class="container">
-				<div>
-					<c:import url="gSearchForm.jsp"></c:import>
-				</div>
+			
+			
 				<div>
 					<h1>상품리스트</h1>
 					<br />
@@ -90,13 +107,11 @@
 
 					</form>
 				</div>
-			</div>
+			
 		</c:when>
 		<c:otherwise>
-			<div class="container">
-				<div>
-					<c:import url="gSearchForm.jsp"></c:import>
-				</div>
+			
+			
 				<div>
 					<h1>상품리스트</h1>
 					<br />
@@ -123,9 +138,9 @@
 						</table>
 					</form>
 				</div>
-			</div>
+			
 		</c:otherwise>
 	</c:choose>
-
+</div>
 </body>
 </html>

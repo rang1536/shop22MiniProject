@@ -77,9 +77,18 @@
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
+		      
+		      <div class="dropdown">
+			    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">상품등록
+			    <span class="caret"></span></button>
+			    <ul class="dropdown-menu">
+			      <li><a href="<c:url value='/goods/gInsert.goo?goodsCate=1'/>">상의</a></li>
+			      <li><a href="<c:url value='/goods/gInsert.goo?goodsCate=2'/>">하의</a></li>
+			      <li><a href="<c:url value='/goods/gInsert.goo?goodsCate=3'/>">신발</a></li>
+			    </ul>
+			  </div>
 		        <li class="active"><a href="<c:url value='/index.jsp'/>">Home</a></li>
 		        <li><a href="<c:url value='/goods/gList.goo'/>">상품리스트</a></li>
-		        <li><a href="<c:url value='/goods/gInsert.goo'/>">상품등록</a></li>
 		        <li><a href="<c:url value='/MList.mem'/>">회원목록</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
@@ -104,7 +113,6 @@
 		      <ul class="nav navbar-nav">
 		        <li class="active"><a href="<c:url value='/index.jsp'/>">Home</a></li>
 		        <li><a href="<c:url value='/goods/gList.goo'/>">상품리스트</a></li>
-		        <li><a href="<c:url value='/goods/gInsert.goo'/>">상품등록</a></li>
 		        <li><a href="<c:url value='/MList.mem'/>">회원목록</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
@@ -129,7 +137,6 @@
 		      <ul class="nav navbar-nav">
 		        <li class="active"><a href="<c:url value='/index.jsp'/>">Home</a></li>
 		        <li><a href="<c:url value='/goods/gList.goo'/>">상품리스트</a></li>
-		        <li><a href="<c:url value='/goods/gInsert.goo'/>">상품등록</a></li>
 		        <li><a href="<c:url value='/MList.mem'/>">회원목록</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">

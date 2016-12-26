@@ -26,7 +26,7 @@
 	</table>>
 	<div class="form-group" align="center">
 		<a href="<c:url value='/goods/gList.goo'/>" class="btn btn-primary">상품리스트</a>
-		<a href="<c:url value='/OUpdateForm.ord'/>" class="btn btn-primary">주문확인/수정하기</a>
+		<a href="<c:url value='/OUpdateForm.ord'/>" class="btn btn-primary">주문확인/주문수정</a>
 	</div>
 </div>
 </body>

@@ -114,6 +114,10 @@
 						</td>
 					</tr>
 					<tr>
+						<td>현재마일리지</td>
+						<td><input type="text" name="memberMileage" value="${member.memberMileage}" readonly/></td>
+					</tr>
+					<tr>
 						<td>마일리지 사용여부체크</td>
 						<td>
 							<select name="choiceMileage">

@@ -21,7 +21,15 @@ public class Order {
 	private int 		orderMileage;
 	private int 		orderPayFinal;
 	private int 		orderPrice;
+	private String 		orderImg;
 	
+	
+	public String getOrderImg() {
+		return orderImg;
+	}
+	public void setOrderImg(String orderImg) {
+		this.orderImg = orderImg;
+	}
 	public int getOrderPrice() {
 		return orderPrice;
 	}

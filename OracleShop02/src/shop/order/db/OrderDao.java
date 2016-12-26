@@ -1,6 +1,7 @@
 package shop.order.db;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import shop.driver.driverDb.DriverDb;
 import shop.member.db.Member;
@@ -11,6 +12,7 @@ public class OrderDao {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	Order order;
+	ResultSet imgRs;
 	
 	//03주문내용 입력하는 매서드(마일리지 적립시)
 	public int oInsertSaveMileage(Order order) throws Exception{
@@ -93,26 +95,43 @@ public class OrderDao {
 
 	
 	//01 구매자 아이디로 주문내역조회
-	public Member oSelectMemberGoods(String memberId) throws Exception{
-		System.out.println("01 주문위한 구매자,상품정보조회 OrderDao!");
-		order = new Order();
+	public ArrayList<Order> oSelectOrderByMemberId(String memberId) throws Exception{
+		System.out.println("01 구매자 아이디로 주문내역조회 OrderDao!");
+		ArrayList<Order> orderList = new ArrayList<Order>();
 		try{
 			db = new DriverDb();
 			conn=db.driverDbcon();
-			pstmt = conn.prepareStatement("select * from  "
-					+ "where orderMemberId = ?");
+			pstmt = conn.prepareStatement("select * from orders "
+					+ "where order_member_id = ?");
 			pstmt.setString(1, memberId);
 			rs = pstmt.executeQuery();
-			
+			while(rs.next()){
+				order = new Order();
+				order.setOrderAmount(rs.getInt("order_amount"));
+				order.setOrderColor(rs.getString("order_color"));
+				order.setOrderGoodsNum(rs.getInt("order_goods_num"));
+				order.setOrderMemberMobile(rs.getString("order_member_mobile"));
+				order.setOrderMemberAdd(rs.getString("order_member_add"));
+				order.setOrderTradeType(rs.getString("order_trade_type"));
+				order.setOrderPayFinal(rs.getInt("order_pay_final"));
+				order.setOrderSize(rs.getString("order_size"));
+				//이미지파일 불러오기!
+				pstmt = conn.prepareStatement("select goods_img from goods "
+						+ "where goods_num = ? and order_member_id=?");
+				imgRs = pstmt.executeQuery();
+				order.setOrderImg(imgRs.getString("order_img"));
+				orderList.add(order);
+			}
 			
 		}catch(Exception e){
 			
 		}finally{
+			if (imgRs != null) try { rs.close(); } catch(SQLException ex) {}
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
 		}
-		return null;
+		return orderList;
 	}
 
 }

@@ -117,7 +117,8 @@ public class OrderDao {
 				order.setOrderSize(rs.getString("order_size"));
 				//이미지파일 불러오기!
 				pstmt = conn.prepareStatement("select goods_img from goods "
-						+ "where goods_num = ? and order_member_id=?");
+						+ "where goods_num = ?");
+				pstmt.setInt(1, order.getOrderGoodsNum());
 				imgRs = pstmt.executeQuery();
 				order.setOrderImg(imgRs.getString("order_img"));
 				orderList.add(order);

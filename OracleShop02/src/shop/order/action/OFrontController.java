@@ -50,8 +50,18 @@ public class OFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			break;
+		case("/OList.ord"):
+			System.out.println("03주문 리스트!!");
+			action = new OList();
+			try{
+				oforward = action.execute(request, response);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			break;
 		case("/OUpdateForm.ord"):
-			System.out.println("03주문 확인/수정!!");
+			System.out.println("03주문 리스트!!");
 			action = new OUpdateForm();
 			try{
 				oforward = action.execute(request, response);

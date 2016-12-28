@@ -227,7 +227,7 @@
 		</c:when>
 		<c:otherwise>
 		<div class="container">
-			<a href="<c:url value='/OUpdateForm.ord'/>" class="btn btn-primary">주문확인/주문수정</a>
+			<a href="<c:url value='/OList.ord'/>" class="btn btn-primary">주문확인/주문수정</a>
 		</div>
 			<div>
 				<h1>상품리스트</h1>

@@ -22,8 +22,15 @@ public class Order {
 	private int 		orderPayFinal;
 	private int 		orderPrice;
 	private String 		orderImg;
+	private String 		orderTradeState;
 	
 	
+	public String getOrderTradeState() {
+		return orderTradeState;
+	}
+	public void setOrderTradeState(String orderTradeState) {
+		this.orderTradeState = orderTradeState;
+	}
 	public String getOrderImg() {
 		return orderImg;
 	}

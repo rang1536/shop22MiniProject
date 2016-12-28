@@ -12,8 +12,44 @@ public class OrderDao {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	Order order;
-	ResultSet imgRs;
 	
+	//04 주문번호로 주문정보 검색 매서드
+	public Order oSelectOrderByOrderNum(int orderNum) throws Exception{
+		System.out.println("04 주문번호로 주문내역조회 OrderDao!");
+		// System.out.println("주문번호값 넘어온거 확인: "+orderNum);
+		try{
+			db = new DriverDb();
+			conn=db.driverDbcon();
+			pstmt = conn.prepareStatement("select * from orders where order_num = ?");
+			pstmt.setInt(1, orderNum);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				order = new Order();
+				order.setOrderNum(rs.getInt("order_num"));
+				order.setOrderAmount(rs.getInt("order_amount"));
+				order.setOrderColor(rs.getString("order_color"));
+				order.setOrderGoodsNum(rs.getInt("order_goods_num"));
+				order.setOrderMemberMobile(rs.getString("order_member_mobile"));
+				order.setOrderMemberAdd(rs.getString("order_member_add"));
+				order.setOrderTradeType(rs.getString("order_trade_type"));
+				order.setOrderPayFinal(rs.getInt("order_pay_final"));
+				order.setOrderSize(rs.getString("order_size"));
+				order.setOrderMemberId(rs.getString("order_member_id"));
+				order.setOrderMemberName(rs.getString("order_member_name"));
+				order.setOrderMemo(rs.getString("order_memo"));
+				order.setOrderTradeDate(rs.getString("order_trade_date"));
+				
+			}
+		}catch(Exception e){
+			
+		}finally{
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return order;
+	}
 	//03주문내용 입력하는 매서드(마일리지 적립시)
 	public int oInsertSaveMileage(Order order) throws Exception{
 		System.out.println("02 주문정보등록 OrderDao");
@@ -97,16 +133,20 @@ public class OrderDao {
 	//01 구매자 아이디로 주문내역조회
 	public ArrayList<Order> oSelectOrderByMemberId(String memberId) throws Exception{
 		System.out.println("01 구매자 아이디로 주문내역조회 OrderDao!");
+		// System.out.println("맴버아이디값 넘어온거 확인: "+memberId);
 		ArrayList<Order> orderList = new ArrayList<Order>();
 		try{
 			db = new DriverDb();
 			conn=db.driverDbcon();
-			pstmt = conn.prepareStatement("select * from orders "
-					+ "where order_member_id = ?");
+			pstmt = conn.prepareStatement("select * from orders where order_member_id = ?");
 			pstmt.setString(1, memberId);
 			rs = pstmt.executeQuery();
+			/*rs.last();
+			System.out.println("첫쿼리 실행결과 확인 : "+rs.getRow());
+			아이디 rang2일때 5개 조회결과 확인.*/
 			while(rs.next()){
 				order = new Order();
+				order.setOrderNum(rs.getInt("order_num"));
 				order.setOrderAmount(rs.getInt("order_amount"));
 				order.setOrderColor(rs.getString("order_color"));
 				order.setOrderGoodsNum(rs.getInt("order_goods_num"));
@@ -115,19 +155,13 @@ public class OrderDao {
 				order.setOrderTradeType(rs.getString("order_trade_type"));
 				order.setOrderPayFinal(rs.getInt("order_pay_final"));
 				order.setOrderSize(rs.getString("order_size"));
-				//이미지파일 불러오기!
-				pstmt = conn.prepareStatement("select goods_img from goods "
-						+ "where goods_num = ?");
-				pstmt.setInt(1, order.getOrderGoodsNum());
-				imgRs = pstmt.executeQuery();
-				order.setOrderImg(imgRs.getString("order_img"));
+				
+				//System.out.println(order);
 				orderList.add(order);
 			}
-			
 		}catch(Exception e){
 			
 		}finally{
-			if (imgRs != null) try { rs.close(); } catch(SQLException ex) {}
 			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
 			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
 			if (conn != null) try { conn.close(); } catch(SQLException ex) {}

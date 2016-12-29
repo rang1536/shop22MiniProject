@@ -13,6 +13,65 @@ public class OrderDao {
 	ResultSet rs;
 	Order order;
 	
+	//06 관리자로그인시 처리상태 업데이트 매서드
+	public int oUpdateTradeState(int orderNum, String orderTradeState) throws Exception{
+		System.out.println("06 처리상태 업데이트 OrderDao!");
+		int result=0;
+		try{
+			db = new DriverDb();
+			conn=db.driverDbcon();
+			pstmt = conn.prepareStatement("update orders set order_trade_state = ? where order_num = ?");
+			pstmt.setString(1, orderTradeState);
+			pstmt.setInt(2, orderNum);
+			result = pstmt.executeUpdate();
+			System.out.println("수정결과 확인 : "+result);
+		}catch(Exception e){
+			
+		}finally{
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return result;
+	}
+	
+	//05 모든 주문정보 검색 매서드
+	public ArrayList<Order> oSelectAllOrder() throws Exception{
+		System.out.println("05 모든 주문내역조회 OrderDao!");
+		ArrayList<Order> orderList = new ArrayList<Order>();
+		try{
+			db = new DriverDb();
+			conn=db.driverDbcon();
+			pstmt = conn.prepareStatement("select * from orders");
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				order = new Order();
+				order.setOrderNum(rs.getInt("order_num"));
+				order.setOrderAmount(rs.getInt("order_amount"));
+				order.setOrderColor(rs.getString("order_color"));
+				order.setOrderGoodsNum(rs.getInt("order_goods_num"));
+				order.setOrderMemberMobile(rs.getString("order_member_mobile"));
+				order.setOrderMemberAdd(rs.getString("order_member_add"));
+				order.setOrderTradeType(rs.getString("order_trade_type"));
+				order.setOrderPayFinal(rs.getInt("order_pay_final"));
+				order.setOrderSize(rs.getString("order_size"));
+				order.setOrderMemberId(rs.getString("order_member_id"));
+				order.setOrderMemberName(rs.getString("order_member_name"));
+				order.setOrderMemo(rs.getString("order_memo"));
+				order.setOrderTradeDate(rs.getString("order_trade_date"));
+				order.setOrderTradeState(rs.getString("order_trade_state"));
+				
+				orderList.add(order);
+			}
+		}catch(Exception e){
+			
+		}finally{
+			if (rs != null) try { rs.close(); } catch(SQLException ex) {}
+			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex) {}
+		}
+		return orderList;
+	}
+	
 	//04 주문번호로 주문정보 검색 매서드
 	public Order oSelectOrderByOrderNum(int orderNum) throws Exception{
 		System.out.println("04 주문번호로 주문내역조회 OrderDao!");

@@ -19,10 +19,11 @@
 				<h1>주문리스트</h1>
 			</center>
 			<br />
-			<form action="<c:url value='/OUpdateForm.ord'/>" method="post"> 
+			
 				<table class="table">
 					<thead>
 						<tr>
+							<th>&nbsp;</th>
 							<th>이미지</th>
 							<th>상품명</th>
 							<th>결제가격</th>
@@ -32,25 +33,35 @@
 					</thead>
 					<tbody>
 						<c:forEach var="orderList" items="${orderList}">
+						<form action="<c:url value='/OUpdateForm.ord'/>" method="post"> 
 							<tr>
+								<td><input type="hidden" value="${orderList.orderNum}" name="orderNum"/></td>
 								<td>
 									<img src="<c:url value='/imgFile/'/>${orderList.orderImg}">
 								</td>
 								<td>${orderList.orderGoodsName}</td>
 								<td>${orderList.orderPayFinal}</td>
-								<td>
-									<select name="tradeState">
-										<option value="상품준비중"></option>
-										<option value="배송중"></option>
-										<option value="주문거래완료"></option>
-									</select>
-								</td>
+								<c:choose>
+									<c:when test="${orderList.orderTradeState == ''}">
+										<td>
+											<select name="tradeState">
+												<option>::선택하세요::</option>
+												<option value="상품준비중">상품준비중</option>
+												<option value="배송중">배송중</option>
+												<option value="주문거래완료">주문거래완료</option>
+											</select>
+										</td>
+									</c:when>
+									<c:when test="${orderList.orderTradeState != null}">
+										<td>${orderList.orderTradeState}</td>
+									</c:when>
+								</c:choose>
 								<td><input type="submit" value="처리상태갱신" /></td>
 							</tr>
+							</form>
 						</c:forEach>
 					</tbody>
 				</table>
-			</form>
 		</div>
 	</c:when>
 	<c:when test="${sessionScope.sessionLevel eq '구매자'}">
